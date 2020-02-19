@@ -1,3 +1,6 @@
+# CDK のドキュメントには、含めるように記載があるが、外しておく。
+cdk.context.json
+
 *.js
 !jest.config.js
 *.d.ts

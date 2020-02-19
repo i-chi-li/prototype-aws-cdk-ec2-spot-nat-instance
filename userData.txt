@@ -1,0 +1,28 @@
+Content-Type: multipart/mixed; boundary="//"
+MIME-Version: 1.0
+
+--//
+Content-Type: text/cloud-config; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: attachment; filename="cloud-config.txt"
+
+#cloud-config
+package_update: true
+package_upgrade: true
+swap:
+  filename: /swap.img
+  size: "auto" # or size in bytes
+  maxsize: 1073741824 # size in bytes
+
+--//
+Content-Type: text/x-shellscript; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: attachment; filename="userdata.txt"
+
+#!/bin/bash
+/bin/echo "Hello World" >> /tmp/testfile.txt
+/bin/cat /tmp/testfile.txt
+#aws s3 cp s3://${DeploymentArtifactsS3Bucket}/gameoflife-web/target/gameoflife.war /usr/share/tomcat8/webapps/gameoflife.war
+--//
